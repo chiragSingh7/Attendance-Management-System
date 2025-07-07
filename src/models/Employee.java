@@ -1,4 +1,4 @@
-public class employee extends user{
+public class Employee extends user{
 
     markAttendance(int ID){
 

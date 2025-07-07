@@ -1,4 +1,4 @@
-public class hr extends employee{
+public class HR extends Employee {
 
     void addEmployee(String name, String role, int ID){
         super(name, role, ID);

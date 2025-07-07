@@ -1,7 +1,7 @@
 package models;
 
-public class IThead extends Admin{
-    IThead(String name, int ID, String email){
+public class Admin extends User{
+    Admin(String name, int ID, String email){
         super(name,ID,email);
     }
 

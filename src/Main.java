@@ -4,37 +4,53 @@ public class Main{
     static public void main(String args[]){
 
         Scanner scanner = new Scanner(System.in);
+        boolean working = true;
 
-        System.out.println("Hello User.\n");
-        System.out.println("Select the login/signup : \n");
-        System.out.println("1. Login");
-        System.out.println("2. Signup");
+        while(working){
+            System.out.println("Hello User.\n");
+            System.out.println("Select the login/signup : \n");
+            System.out.println("1. Login");
+            System.out.println("2. Signup");
+            System.out.println("0. Exit");
 
-        //if login
-        System.out.println("Registered user login ");
-        System.out.println("Enter your ID : ");
-        int ID = scanner.nextInt();
-        // check if ID matches or else
-        System.out.println("Invalid ID!! Please check the ID you have entered.\n");
+            System.out.println("Enter your choice : ");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
 
-        System.out.println("Enter your password : ");
-        String password = scanner.next();
-        // check if password matches or else
-        System.out.println("Invalid password!! Please check the password you have entered.\n");
+            switch(choice) {
+                //if login
+                case 1 : System.out.println("Registered user login ");
+                         System.out.println("Enter your ID : ");
+                         int ID = scanner.nextInt();
 
-        // if both matches with our data then check whose ID it is, the HR or the Employee
-        // if it matches with the Employee
-        System.out.println("Hello " + );
+                         //check if the login ID matches or
+                         System.out.println("Invalid ID!! Please check the ID you have entered.\n");
 
-        // if Signup
-        System.out.println("New user signup \n");
-        System.out.println("Please fill in the following details : ");
+                         break;
 
-        System.out.println("1. Enter the user ID provided by HR : ");
-        ID = scanner.nextInt();
+                //if signup
+                case 2 : System.out.println("New user signup \n");
+                         System.out.println("Please fill in the following details : ");
 
-        System.out.println("2. Enter your password : ");
-        password = scanner.next();
+                         System.out.println("1. Enter the user ID provided by HR : ");
+                         ID = scanner.nextInt();
+
+                         System.out.println("2. Enter your password : ");
+                         String password = scanner.next();
+
+                         break;
+
+                // if exit
+                case 3 : System.out.println("Exiting the program");
+                         working = false;
+                         break;
+
+                //default
+                default :
+                    System.out.println("Enter a valid choice .");
+            }
+        }
+
 
         scanner.close();
     }

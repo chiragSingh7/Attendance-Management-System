@@ -17,5 +17,5 @@ public abstract class User {
         System.out.println("Email: " + this.email);
     }
 
-    public abstract void viewAttendance();
+    //public abstract void viewAttendance();
 }

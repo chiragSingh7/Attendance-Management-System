@@ -1,7 +1,13 @@
+package models;
+
 public class HR extends Employee {
 
+    HR(String name, int ID, String email){
+        super(name, ID, email);
+    }
+
     void addEmployee(String name, String role, int ID){
-        super(name, role, ID);
+
     }
 
     void removeEmployee(int ID){

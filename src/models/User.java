@@ -1,21 +1,40 @@
 package models;
 
-public abstract class User {
+public class User {
     protected String name;
     protected int ID;
     protected String email;
+    protected String password;
 
-    User(String name, int ID, String email){
+    public User(String name, String email, String password){
         this.name = name;
-        this.ID = ID;
         this.email = email;
+        this.password = password;
     }
 
-    public void getDetails(String name, int ID){
-        System.out.println("Name: " + this.name);
-        System.out.printf("ID: %d",this.ID);
-        System.out.println("Email: " + this.email);
+    public void setID(int ID){
+        this.ID = ID;
     }
 
+    public int getID(){
+        return this.ID;
+    }
+
+    public String getEmail(){
+        return this.email;
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "name='" + name + '\'' +
+                ", id='" + ID + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
     //public abstract void viewAttendance();
 }

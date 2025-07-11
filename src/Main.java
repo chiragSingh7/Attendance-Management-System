@@ -14,12 +14,12 @@ public class Main{
 
             while(working){
                 System.out.println("Welcome User ");
-                System.out.println("\n\n------x------x------x------x------\n\n");
+                System.out.println("\n------x------x------x------x------\n");
                 System.out.println("Select whether to login/signup : \n");
                 System.out.println("1. Login");
                 System.out.println("2. Signup");
                 System.out.println("0. Exit");
-                System.out.println("\n\n------x------x------x------x------\n\n");
+                System.out.println("\n------x------x------x------x------\n");
 
                 System.out.println("Enter your choice : ");
                 int choice = scanner.nextInt();
@@ -41,9 +41,10 @@ public class Main{
 
                              //if the mail does not match ask for signup or enter again
                              while(flag){
-                                 System.out.println("------x------x------x------x------");
+                                 System.out.println("\n------x------x------x------x------\n");
                                  System.out.println("1. Enter your email again...");
                                  System.out.println("2. Signup Instead");
+                                 System.out.println("\n------x------x------x------x------\n");
                                  System.out.println("Enter your choice : ");
                                  int choice2 = scanner.nextInt();
                                  scanner.nextLine();

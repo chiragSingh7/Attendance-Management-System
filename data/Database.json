@@ -10,5 +10,11 @@
     "ID": 0,
     "email": "jaiswal@yahoo.com",
     "password": "mjcr"
+  },
+  {
+    "name": "Siddharth",
+    "ID": 0,
+    "email": "sid@hotmail.com",
+    "password": "paaji"
   }
 ]

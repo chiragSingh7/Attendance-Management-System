@@ -17,53 +17,44 @@ public class modifyDatabase {
 
     public static void addToDatabase(String name, String mail, String password){
         try{
-            File file = new File("Database.json");
+            File file = new File("data/Database.json");
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
             User u1 = new User(name, mail, password);
-
-            if (!file.exists()) {
-                file.createNewFile();
-
-                try {
-                    FileWriter writer = new FileWriter(file);
-                    writer.write("[]");
-                    writer.close();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
 
             //check if the file is empty
             if (file.length() == 0) {
                 //if yes then create a list and add the first user to list and write
                 List<User> allUser = new ArrayList<>();
                 allUser.add(u1);
-                gson.toJson(allUser);
-            } else {
-                try {/*get list from Json
-                add to list
-                overwrite the list
-                */
-                    FileReader reader = new FileReader("Database.json");
-                    FileWriter writer = new FileWriter("Database.json");
+                String myJson = gson.toJson(allUser);
 
-                    //defining the type you want to store
-                    Type userListType = new TypeToken<ArrayList<User>>() {
-                    }.getType();
-                    List<User> aUser = gson.fromJson(reader, userListType);
-
-                    aUser.add(u1);
-                    gson.toJson(aUser, writer);
-
-                    //closing the reader and writer
-                    writer.close();
-                    reader.close();
+                try(FileWriter writer = new FileWriter("data/Database.json")){
+                    writer.write(myJson);
                 } catch (IOException e) {
-                    throw new RuntimeException(e);
+                    throw new IOException(e);
+                }
+            } else {
+                Type userListType = new TypeToken<ArrayList<User>>() {}.getType();
+                List<User> aUser = new ArrayList<>();
+
+                try (FileReader reader = new FileReader("data/Database.json")){
+                    // read the list from json file and add the new user
+                    aUser = gson.fromJson(reader, userListType);
+                } catch (IOException e) {
+                    throw new IOException(e);
+                }
+
+                aUser.add(u1);
+
+                try(FileWriter writer = new FileWriter("data/Database.json")){
+                    gson.toJson(aUser, writer);
+                } catch (IOException e) {
+                    throw new IOException(e);
                 }
             }
-        } catch (Exception e) {
+        }catch (Exception e){
+            System.out.println("Something went wrong while dealing with database.");
             e.printStackTrace();
         }
     }

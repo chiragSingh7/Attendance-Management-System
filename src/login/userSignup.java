@@ -25,8 +25,8 @@ public class userSignup {
             if (wrong) {
                 System.out.println("\nInvalid mail!!. Check the mail you have provided and enter again.");
                 System.out.println("Your provided mail : " + mail);
+                System.out.println("Enter the mail again : ");
                 mail = scanner.nextLine();
-                wrong = false;
             }
         }
 
@@ -41,9 +41,8 @@ public class userSignup {
             pass = scanner.nextLine();
         }
 
-        System.out.println("\n\nSuccessfully Registered !!");
+        System.out.println("\n\nSuccessfully Registered !!\n\n");
 
         modifyDatabase.addToDatabase(name, mail, password);
-        scanner.close();
     }
 }

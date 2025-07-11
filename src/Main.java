@@ -8,71 +8,107 @@ import java.io.IOException;
 
 public class Main{
     static public void main(String[] args) throws IOException {
+        try{
+            Scanner scanner = new Scanner(System.in);
+            boolean working = true;
 
-        Scanner scanner = new Scanner(System.in);
-        boolean working = true;
+            while(working){
+                System.out.println("Welcome User ");
+                System.out.println("\n\n------x------x------x------x------\n\n");
+                System.out.println("Select whether to login/signup : \n");
+                System.out.println("1. Login");
+                System.out.println("2. Signup");
+                System.out.println("0. Exit");
+                System.out.println("\n\n------x------x------x------x------\n\n");
 
-        String filepath = "Database.txt";
+                System.out.println("Enter your choice : ");
+                int choice = scanner.nextInt();
+                scanner.nextLine();
 
-        while(working){
-            System.out.println("Welcome User ");
-            System.out.println("------x------x------x------x------");
-            System.out.println("Select whether to login/signup : \n");
-            System.out.println("1. Login");
-            System.out.println("2. Signup");
-            System.out.println("0. Exit");
-            System.out.println("------x------x------x------x------");
+                switch(choice) {
+                    //if login
+                    case 1 : System.out.println("\n Registered user login ");
+                        System.out.println("Enter your email : ");
+                        String mail = scanner.nextLine();
 
-            System.out.println("Enter your choice : ");
-            int choice = scanner.nextInt();
-            scanner.nextLine();
+                        boolean exitLogin = false;
 
-            switch(choice) {
-                //if login
-                case 1 : System.out.println("\n Registered user login ");
-                         System.out.println("Enter your ID : ");
-                         int ID = scanner.nextInt();
-                         scanner.nextLine();
+                        //checking if the ID exists among the registered users or not
+                         while(!userLogin.checkMail(mail) && !exitLogin){
+                             System.out.println("Check the email you have entered or go to signup");
+                             System.out.println("The email you entered : " + mail);
+                             boolean flag = true;
 
-                         //checking if the ID exists among the registered users or not
-//                         while(!userLogin.checkID(ID)){
-//                             System.out.println("Enter the ID again : ");
-//                             ID = scanner.nextInt();
-//                         }
-//
-//                         System.out.println("Enter the password : ");
-//                         String password = scanner.next();
-//
-//                         //checking if the password is correct or not
-//                         while(!userLogin.checkPswd(password)){
-//                             System.out.println("Your password doesn't matches with the registered password. Check the password you have enetered and try again!!");
-//                             password = scanner.next();
-//                         }
+                             //if the mail does not match ask for signup or enter again
+                             while(flag){
+                                 System.out.println("------x------x------x------x------");
+                                 System.out.println("1. Enter your email again...");
+                                 System.out.println("2. Signup Instead");
+                                 System.out.println("Enter your choice : ");
+                                 int choice2 = scanner.nextInt();
+                                 scanner.nextLine();
 
-                         break;
+                                 switch (choice2){
+                                     case 1 : // asking for mail again not checking since we'll chek eventually in the while loop
+                                         System.out.println("Enter the mail again : ");
+                                         mail = scanner.nextLine();
+                                         flag = false;
+                                         break;
 
-                //if signup
-                case 2 : System.out.println("\n New user signup");
-                         System.out.println("Please fill in the following details : ");
+                                     case 2 :
+                                         userSignup.enterDetails();
+                                         exitLogin = true;
+                                         flag = false;
+                                         break;
 
-                         userSignup.enterDetails();
+                                     default :
+                                         System.out.println("Enter a valid choice (1/2)");
+                                         break;
+                                 }
+                             }
+                         }
 
-                         //show details to verify with the user before moving onto the next step, if correction needed enter information again
+                         if(exitLogin){
+                             break;
+                         }
 
-                         break;
+                         System.out.println("Enter your password : ");
+                         String password = scanner.nextLine();
 
-                // if exit
-                case 0 : System.out.println("Exiting the program");
-                         working = false;
-                         break;
+                         // check if the password is correct or not
+                         while(!userLogin.checkPass(mail,password)){
+                             System.out.println("Password doesn't matches with the registered password. Try again.");
+                             password = scanner.nextLine();
+                         }
 
-                //default
-                default :
-                    System.out.println("Enter a valid choice .");
+                        System.out.println("Successfully logged in!!");
+                        break;
+
+                    //if signup
+                    case 2 : System.out.println("\n New user signup");
+                        System.out.println("Please fill in the following details : ");
+
+                        userSignup.enterDetails();
+
+                        //show details to verify with the user before moving onto the next step, if correction needed enter information again
+
+                        break;
+
+                    // if exit
+                    case 0 : System.out.println("Exiting the program");
+                        working = false;
+                        break;
+
+                    //default
+                    default :
+                        System.out.println("Enter a valid choice (1/2/0)");
+                }
             }
+            scanner.close();
+        } catch (Exception e) {
+            System.out.println("Something went wrong!!");
+            e.printStackTrace();
         }
 
-
-        scanner.close();
     }
 }

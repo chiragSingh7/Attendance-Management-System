@@ -28,6 +28,10 @@ public class User {
         return this.name;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +

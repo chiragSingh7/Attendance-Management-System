@@ -58,4 +58,6 @@ public class modifyDatabase {
             e.printStackTrace();
         }
     }
+
+    public static void editDatabase()
 }

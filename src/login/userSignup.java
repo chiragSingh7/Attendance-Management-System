@@ -33,7 +33,7 @@ public class userSignup {
         System.out.println("\nEnter the password you want to set : ");
         String password = scanner.nextLine();
 
-        System.out.println("\nEnter the password again to check : ");
+        System.out.println("\nEnter the password again to confirm : ");
         String pass = scanner.nextLine();
 
         while (!password.equals(pass)) {
@@ -44,5 +44,9 @@ public class userSignup {
         System.out.println("\n\nSuccessfully Registered !!\n\n");
 
         modifyDatabase.addToDatabase(name, mail, password);
+    }
+
+    public static void showDetails(){
+
     }
 }

@@ -1,14 +1,25 @@
 package models;
 
+import attendance.Attendance;
+
+import java.time.LocalDate;
+import java.util.List;
+
 public class User {
     protected String name;
     protected int ID;
     protected String email;
     protected String password;
+    // composition of attendance to use the functions in user
+    private Attendance attendance = new Attendance();
 
     public User(String name, String email, String password){
         this.name = name;
         this.email = email;
+        this.password = password;
+    }
+
+    public void setPassword(String password){
         this.password = password;
     }
 
@@ -18,6 +29,10 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void addAttendance(LocalDate date){
+        attendance.markPresent(date);
     }
 
     public void setID(int ID){
@@ -38,6 +53,18 @@ public class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public Attendance getAttendance() {
+        return this.attendance;
+    }
+
+    public List<LocalDate> getPresentDates(){
+        return attendance.viewPresentDates();
+    }
+
+    public List<LocalDate> getAbsentDates(){
+        return attendance.viewAbsentDates();
     }
 
     @Override
